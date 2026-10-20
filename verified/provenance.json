@@ -1,0 +1,93 @@
+{
+  "baseline_repository": "bigospeedrun/verifier",
+  "baseline_commit": "319252b348e254a4257cdc69805fd6eec3f5cd94",
+  "baseline_directory": "submissions/apsp/fringewidth-apsp-299556085",
+  "canonical_statement_sha256": "4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987",
+  "changed_lean_files": [
+    {
+      "path": "Submission/ThreeSumApsp/Batch/Final.lean",
+      "baseline_sha256": "59ceb0e72f67763a053541f105d52bd8a69a702cb6d9550cd6183bbe1974233b",
+      "refinement_sha256": "a8f8cd38439eaaed08c9b55e39d734231cffb4671a5b2967e58f7afdd46d9316"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/Numbers.lean",
+      "baseline_sha256": "a6a8ba3214e55acd4b0526f27b016b3e9bad99132beb106f7d7dc807ffb849cc",
+      "refinement_sha256": "4d8c2232606afa7d1c5326e65dd5ccdf77854d9a311913d0505f35d6f90bac8d"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/OBound.lean",
+      "baseline_sha256": "35bb7005fe5a79efd8be129af945c06a0b61f0fef91fdf51bcd43df7b269dcb6",
+      "refinement_sha256": "cafe46866a3e4d71582864e221b88d7c9ba23a5c8af48dc0d46a18d868201d37"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/ONeedPoly.lean",
+      "baseline_sha256": "ce82243bfa1b5d0065115f41a586e76f31356803adda799b101f2d2457ef192d",
+      "refinement_sha256": "22f3dc4177f98e786baf1481234f1401e480c472b0a4b103cb4a1d50f2bbc928"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/OParams.lean",
+      "baseline_sha256": "2515712654f8ab9162e6299665cecdb6b4576e36fe18bb162879be941d323597",
+      "refinement_sha256": "218fef5c421397ae7302f4aa4872585756cf0e1f61ab5a1cd2213dcc635ed10d"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/OProg.lean",
+      "baseline_sha256": "075badc013381a1fa5cda6e04418ba9ca0b92c15aab91901b661aad5ba2ba475",
+      "refinement_sha256": "c1957b33e2473b55e7dcd50c76ce15dbf6908074c9cde386670cd67a9fa2f803"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/ORunParams.lean",
+      "baseline_sha256": "d32c97c87beb1750ca60dcbd691a5b716b1fc7bc3d7d30232fdb86ebf0b6d73d",
+      "refinement_sha256": "21935c5491202229f1a6136d0312405748ec1f164e17a6e80d5755ec9e765796"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Batch/OSetup.lean",
+      "baseline_sha256": "b1509cd777f64123cd86f8007c6f1ec713d6fcb1950cb14daaa292236d2ecdae",
+      "refinement_sha256": "9e28e52b89482608f07d523384957e26838d750a5ed1e88094a27b148650e5d8"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/Asymp.lean",
+      "baseline_sha256": "6ff7540bb9c3a8e84dda60096fba7b0d08adefd2007bb7ef872b5bf7787c14c4",
+      "refinement_sha256": "fca7c868c1391091641a94e81c1a5a0d9963078f5dc3a2d70e7f7ccf27aec426"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/Chain.lean",
+      "baseline_sha256": "2effae6cd00d1f24a7db74b0032b8ffaac3cc73d89edbc589abd94f70248a56d",
+      "refinement_sha256": "395239134f6064b72bd3443bc5ab1f6b9c7a399909c2039ceb93f144792758d8"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/Defs.lean",
+      "baseline_sha256": "14562f36581d0cda167bfb1b70ccc0c3b173e7c8d5d0f04ee9c2c0715fb9613f",
+      "refinement_sha256": "0c1cdd86b5479f3319e34fa358b87cb1e13f2e99d2ae512565be1faf0522c94c"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/Final.lean",
+      "baseline_sha256": "2b90f4a195c3f25581284c824b6269cffb0dd4dabebb49927858ec8550c33fd6",
+      "refinement_sha256": "81c957f8bd3a8ef2c7095b4e756c461660751db9690895561c064079481e6c35"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/HostMain.lean",
+      "baseline_sha256": "5060af896bfc9d19ca64aef511d6a9d8ca66619d0fda764f9dfd887999758868",
+      "refinement_sha256": "0e0f4fb079559164f3b4b0c8d1ef86d26984ac5c894909b7def67bca8c4573f9"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/HostMath.lean",
+      "baseline_sha256": "339f004f0eb5dff6754a7da4d4ceb5f4a72ddc4b9c6a85a2f1c8b17c82c443ac",
+      "refinement_sha256": "ea112f65982bcea3831bd7fbdfa8271de7af23152f961919964bcbaa87594961"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/HostTime.lean",
+      "baseline_sha256": "146fc67837d3569de0cd73a6e570d9ee382115797478ab25b6373c9ccf222aed",
+      "refinement_sha256": "76d9f395671f01b1bcc865d63f13c6f3e9ab7724e35090b31e3ddc7091fe4b35"
+    },
+    {
+      "path": "Submission/ThreeSumApsp/Filter2/HostTop.lean",
+      "baseline_sha256": "6b14fa0d0c78ca341706bfb334f1660c59b228c04a4ff80e47fa98deb81a4f86",
+      "refinement_sha256": "8f8eed610f56820da28cd2eb237f71f1199dcef9bef2af53b0b92f53f13772f0"
+    },
+    {
+      "path": "Submission.lean",
+      "baseline_sha256": "0fa55eb608fad706cdc4901fe5bd952ef79c747df9966a76d30fafa7e58a4295",
+      "refinement_sha256": "ca44da0d403f6837394513e51f471c447eeb8fd9340444273520d9728aebed1a"
+    }
+  ]
+}
