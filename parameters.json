@@ -8,5 +8,5 @@
   "exponent": "2.9929479187094",
   "source_commit": "8a21eaae81599913dba562727e03a9b48c36a5b9",
   "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex",
-  "status": "Exact numerical certificate; APSP corollary depends on the cited written algorithmic proof. Not Lean verified."
+  "status": "Numerical certificate and real cost ledger formalized in Lean; APSP corollary depends on the cited written algorithmic proof. The full challenge word-RAM theorem is not formalized here."
 }

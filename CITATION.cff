@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this work using the metadata below."
+type: software
+title: "A numerical refinement of the aligned-cache APSP exponent"
+authors:
+  - family-names: "Wharton"
+    given-names: "Joshua"
+    affiliation: "QFEX"
+    email: "joshua@qfex.com"
+date-released: 2026-10-20
+repository-code: "https://github.com/JoshuaQFEX/apsp-bound"
+url: "https://github.com/JoshuaQFEX/apsp-bound"
+abstract: >-
+  Exact numerical and formal certificates for a rational parameter refinement
+  of the aligned-cache APSP construction, with target exponent
+  2.9929479187094. The algorithmic consequence depends on the cited written
+  construction and its computational cost interpretation.

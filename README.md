@@ -1,20 +1,34 @@
 # APSP exponent refinement
 
+**Joshua Wharton · QFEX · [joshua@qfex.com](mailto:joshua@qfex.com)**
+
 An exact numerical certificate for the conditional deterministic integer APSP bound
 
 $$O\!\left(n^{2.9929479187094}\right).$$
 
 This refines the exponent **2.99294792** displayed as **Claimed** on the [Big O Speedrun APSP challenge](https://bigospeedrun.com/apsp) when examined on 20 October 2026. The decrease in the exponent is exactly **0.0000000012906**.
 
-Read the [five-page research note (PDF)](apsp_refinement.pdf) or its [LaTeX source](apsp_refinement.tex).
+Read the [research note (PDF)](apsp_refinement.pdf), its [LaTeX source](apsp_refinement.tex), or the [Lean proof and build instructions](lean/README.md).
 
 ## What is established
 
-The accompanying checker verifies **47 strict numerical inequalities and all exact stage identities** using rational interval arithmetic. These are the numerical conditions inherited from the aligned Walsh embedding, polynomial query cache, and composite-incidence construction in the [pinned upstream note](https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex).
+The accompanying Lean development proves **47 strict numerical inequalities and all exact stage identities**, with the entropy expressions defined using Mathlib's actual `Real.log`. It also proves a common reserve of **2 × 10⁻¹⁴** in the inequalities, controls all stages of both phases, and derives the stated exponent for the explicit mathematical cost ledger, including fixed logarithmic factors and upward rounding. The independent Python checker verifies the same numerical conditions using rational interval arithmetic. These conditions come from the aligned Walsh embedding, polynomial query cache, and composite-incidence construction in the [pinned upstream note](https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex).
 
-The APSP bound is **conditional on that construction's written algorithmic proof and word-RAM cost interpretation**. The numerical certificate does not verify the embedding, data structure, reductions, or complete program. This repository contains no Lean development and makes no claim of Lean verification, global optimality, or practical speedup. The fixed stage count is enormous and the certified slack is very small.
+The APSP bound is **conditional on that construction's written algorithmic proof and word-RAM cost interpretation**. The Lean theorems establish the numerical certificate and the mathematical cost ledger; the complete challenge `EndStatement.APSP` theorem, including a correct machine program and a proof of its execution cost, remains outside this development. The fixed stage count is enormous and the certified slack is very small; no global optimality or practical speedup is claimed.
 
-The contribution here is a refined rational parameter witness, an independently implemented exact checker, a reproducible numerical search, and an explanatory note. The underlying algorithm and proof architecture are attributed to the sources below. The materials were prepared with AI assistance; the separate reviews mentioned in the note were AI-agent reviews. This repository records the refinement and is not a submission to, or verification by, the challenge.
+The contribution here is a refined rational parameter witness, its Lean formalization, an independently implemented exact checker, a reproducible numerical search, and an explanatory note, attributed to **Joshua Wharton, QFEX**. The underlying algorithm and adapted proof architecture are attributed to the sources below and in the Lean file headers. The materials were prepared with AI assistance; the separate reviews mentioned in the note were AI-agent reviews. This repository records the refinement and is not a submission to, or verification by, the challenge.
+
+## Check the Lean proof
+
+The project pins **Lean 4.33.1** and an exact Mathlib commit. Follow the [setup instructions](lean/README.md), then run:
+
+```bash
+cd lean
+lake build
+lake env lean Audit.lean
+```
+
+The main results are `ApspBound.Analytic.analyticNumericalCertificate` and `ApspBound.Ledger.refinedExponentBigO`. The audit rejects any transitive axiom beyond `propext`, `Classical.choice`, and `Quot.sound`; the development uses no admitted proofs or native decision axioms. The [Lean README](lean/README.md) states the exact theorem and the remaining machine-program obligations. [Citation metadata](CITATION.cff) records the author, affiliation, and contact.
 
 ## Reproduce the certificate
 

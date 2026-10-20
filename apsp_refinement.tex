@@ -18,7 +18,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
 \title{A numerical refinement of the\newline aligned-cache APSP exponent}
-\author{}
+\author{Joshua Wharton\\QFEX\\\texttt{joshua@qfex.com}}
 \date{20 October 2026}
 \begin{document}
 \maketitle
@@ -31,10 +31,11 @@ conditional bound $O(n^{2.9929479187094})$, improving the displayed
 $O(n^{2.99294792})$ bound by $1.2906\times10^{-9}$ in its exponent.
 This is a parameter and numerical-certificate refinement of the existing
 algorithm. Its APSP consequence depends on that construction's written
-algebraic and runtime proof; it is not a new Lean verification.
-A standalone Python checker using rational interval arithmetic accompanies
-this note. The numerical feasibility result is independent of floating-point
-optimization.
+algebraic and runtime proof. A Lean development proves the real numerical
+certificate and its explicit asymptotic cost ledger; the complete challenge
+word-RAM theorem remains outside this formalization. A standalone Python
+checker using rational interval arithmetic also accompanies this note.
+The numerical feasibility result is independent of floating-point optimization.
 \end{abstract}
 
 \section{Scope and precise status}
@@ -56,7 +57,9 @@ the accompanying Lean development uses a different cost model from the
 required \texttt{EndStatement} model~\cite{race}.
 
 This note proves the numerical feasibility of a new rational witness.
-Its algorithmic corollary uses the cited written lemmas as dependencies.
+The companion Lean development establishes the real-logarithm certificate
+and its mathematical cost-ledger bound. Its algorithmic corollary uses the
+cited written lemmas as dependencies.
 A separate AI-agent review during preparation checked the local
 identity, Walsh normalization, cache counting, box decomposition, phase
 costs, certification rule, and reductions to min-plus and APSP; no defect
@@ -145,7 +148,9 @@ certificate hold strictly for target saving $\delta$.
 
 \begin{proof}
 The accompanying \texttt{verify\_certificate.py} evaluates each expression
-using rational interval arithmetic. Its inputs come from
+using rational interval arithmetic. A separate Lean proof establishes the
+same strict conditions over the actual real logarithm and entropy
+expressions. The exact inputs are recorded in
 \texttt{parameters.json}. Natural logarithms are enclosed by the
 explicit series-and-remainder argument in Section~\ref{sec:checker}.
 The following entries are conservative lower bounds, rounded downward
@@ -245,6 +250,48 @@ python3 verify_certificate.py --json certificate.json
 \end{verbatim}
 recomputes all 47 inequalities and exact stage identities.
 
+\section{Lean formalization}\label{sec:lean}
+The repository's \texttt{lean/} directory contains a Lean 4.33.1
+development with Mathlib pinned to revision \texttt{0df444a360ea};
+the full dependency identifiers are in \texttt{lake-manifest.json}.
+The \texttt{LogBounds} module proves seven rational enclosures of actual
+\texttt{Real.log} values using Mathlib's positive atanh-series
+theorems~\cite{mathlib}. These use 40 terms and the valid geometric
+tail majorant $2z^{81}/(1-z^2)$, which is looser than the Python checker's
+majorant but sufficient for the chosen endpoints. A proved range-reduction
+identity then gives enclosures of $\ln2$, $\HH(1/c)$,
+$\HH((1-\theta)/c)$, and $\HH(\theta)$ at precision $10^{-24}$.
+
+The theorem \texttt{ApspBound.Analytic.analyticNumericalCertificate}
+proves all 47 inequalities at the real cost expressions, with no assumed
+logarithm bounds. The development also proves the exact stage identities
+and a common strict reserve of $2\times10^{-14}$ in the inequalities.
+Affine interpolation establishes the cost conditions throughout both
+phases, including all fixed $R+1$ stage indices, without enumerating them.
+
+The theorem \texttt{ApspBound.Ledger.refinedExponentBigO} proves, for
+every fixed natural $k$, that the explicitly defined mathematical ledger
+\texttt{completeCost k} is $O(n^{2.9929479187094})$. It includes a quadratic
+scan, incidence bookkeeping, six costs at each stage, upward integer
+rounding, and fixed logarithmic padding. This is a closed theorem about
+that ledger. A correct word-RAM implementation and domination of its
+actual execution time by the ledger remain separate proof obligations.
+
+The development uses no admitted proofs or additional project axioms.
+Its transitive axiom audit allows only the standard
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The rational certificate uses kernel reduction; no native decision axiom
+is used. After installing the pinned dependencies, run:
+\begin{verbatim}
+cd lean
+lake build
+lake env lean Audit.lean
+\end{verbatim}
+The repository includes complete setup instructions and an automated
+workflow for the build and audit. The formalization and research note
+are attributed to Joshua Wharton, QFEX; the adapted proof arrangement
+and underlying algorithm retain the upstream attribution stated above.
+
 \section{Other avenues examined and verification limits}
 The search also examined removing channel entries from the polynomial
 cache, partial channel caching, fixed-profile prefix caching, and larger
@@ -266,10 +313,12 @@ were independently rerun: the embedding checker passed 352 original
 matrix outputs; the cache checker passed 34 arbitrary signed-array
 queries and 20 encoders; the integration checker passed 530 normalized
 scalar and cyclic coefficients. These tests do not prove the
-asymptotic construction. The arithmetic certificate proves numerical
-feasibility only. This repository records the refinement; it does not
+asymptotic construction. The Lean numerical and cost-ledger proofs do
+not discharge the full word-RAM implementation and correctness obligations.
+This repository records the refinement; it does not
 constitute a submission to, or verification by, the challenge.
 
+\clearpage
 \begin{thebibliography}{9}\small
 \bibitem{race}
 Big O Speedrun, \emph{APSP challenge}, accessed 20 October 2026.
@@ -296,5 +345,10 @@ $D\le N^{0.172}$ and lossless reductions for 3SUM, Exact Triangle and
 APSP, with 3SUM over abelian groups and a dichotomy for coordinatewise
 problems}, arXiv:2610.17420v1, 2026.
 \url{https://arxiv.org/abs/2610.17420v1}.
+
+\bibitem{mathlib}
+The Mathlib community, \emph{Mathlib 4}, revision
+\texttt{0df444a360ea}, Lean 4.33.1.
+\href{https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions/Log/Deriv.lean}{Real logarithm series and remainder theorems}.
 \end{thebibliography}
 \end{document}
