@@ -33,6 +33,7 @@ def source_snapshot() -> dict[str, str]:
     files += [ROOT / name for name in (
         "Submission.lean", "manifest.json", "lean-toolchain",
         "lakefile.toml", "lake-manifest.json", "verify.py", "scripts/build_sequential.py",
+        "scripts/build_cached_groups.py",
     )]
     return {
         str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()

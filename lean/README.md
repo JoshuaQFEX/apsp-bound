@@ -1,8 +1,10 @@
-# Lean formalization
+# Lean numerical and cost-ledger formalization
 
 **Joshua Wharton · QFEX · [joshua@qfex.com](mailto:joshua@qfex.com)**
 
 This project formalizes the exact parameter certificate and the asymptotic mathematical cost ledger for the exponent **2.9929479187094**. The logarithms in the theorem are Mathlib's actual `Real.log`, and the rational parameter values agree with the parent directory's [parameters.json](../parameters.json).
+
+The separate [`../verified/` project](../verified/README.md) contains the complete exact-model APSP development at exponent **2.995560766**. Its theorem has a different exponent and uses the inherited fully implemented algorithm; it does not establish the faster bound studied here. The [`../machine/` directory](../machine/README.md) records checked components and the remaining implementation obligations for the faster construction.
 
 ## Build and audit
 
@@ -14,7 +16,7 @@ lake build
 lake env lean Audit.lean
 ```
 
-The toolchain is pinned to **Lean 4.33.1**. Mathlib is pinned to commit **`0df444a360eaa60ab8c11dca51a86af692955474`**, with its transitive dependencies recorded in [lake-manifest.json](lake-manifest.json). The first command downloads precompiled dependency objects; all proof modules in this repository are built from source by the second command.
+The toolchain is pinned to **Lean 4.33.1**. Mathlib is pinned to commit **`0df444a360eaa60ab8c11dca51a86af692955474`**, with its transitive dependencies recorded in [lake-manifest.json](lake-manifest.json). The first command downloads precompiled dependency objects; all proof modules in this numerical Lean project are built from source by the second command.
 
 [Audit.lean](Audit.lean) examines every declaration in the `ApspBound` namespace and rejects any transitive axiom outside `propext`, `Classical.choice`, and `Quot.sound`. These are the standard logical axioms used by this Mathlib development. The audit rejects `sorryAx`, native decision axioms, and any additional project axiom. The rational checks use `decide +kernel`; the real estimates use proof-producing Mathlib tactics.
 
@@ -46,9 +48,9 @@ The numerical and cost-ledger theorems have no hypotheses asserting unproved log
 
 ## Scope of the formalization
 
-This project **does not prove the challenge's complete `EndStatement.APSP` theorem**. The connection from the aligned embedding, polynomial cache, composite-incidence reduction, and min-plus/APSP reductions to the step count of a correct fixed-width word-RAM program remains outside these modules.
+This numerical project **does not prove the challenge's complete `EndStatement.APSP` theorem at exponent 2.9929479187094**. The connection from the aligned embedding, polynomial cache, composite-incidence reduction, and min-plus/APSP reductions to the step count of a correct fixed-width word-RAM program remains outside these modules.
 
-The explicit interfaces `costBoundOfDomination` and `costBoundOfEventualDomination` explain how a future program proof can use the established ledger bound. Their cost-domination premises remain visible; this repository supplies no witness for them.
+The explicit interfaces `costBoundOfDomination` and `costBoundOfEventualDomination` explain how a future program proof can use the established ledger bound. Their cost-domination premises remain visible; these modules supply no complete execution witness for the faster bound.
 
 This distinction already exists in the upstream [machine adapter](https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/machine/CanonicalMachineAdapter.lean) and [machine documentation](https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/machine/README.md). Its adapter requires a correct min-plus machine program, a polynomial word-width requirement, and a bound comparing actual machine execution to the cost ledger. Those obligations are not discharged by changing numerical constants.
 

@@ -1,0 +1,31 @@
+Kernel check of LowRowMachine.lean
+Author: Joshua Wharton, QFEX, joshua@qfex.com.
+Lean version: leanprover/lean4:v4.33.1
+Source SHA-256: b245ce32186f551eedd12e0ab2d3a95002faa82826bfea5284fce6d5ad5518fa
+
+Working directory:
+/workspace/scratch/7d68118d32c5/apsp_work/full_machine/extension
+
+Command:
+PATH=/tmp/lean-4.33.1-linux/bin:$PATH lake env lean -j1 -o .lake/build/lib/lean/LowRowMachine.olean LowRowMachine.lean
+
+Exit code: 0
+
+LowRowMachine.lean:132:18: warning: Variable name `hq` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hq
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Light.LowRowMachine.solves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Light.LowRowMachine.allProgram_solves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Light.LowRowMachine.need_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Light.LowRowMachine.solvedIn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Light.LowRowMachine.ledger_overhead' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Compiled .olean SHA-256:
+e295c928f2840eecea0b94ff0710bb4dfe09d9bacd44910ee815f834aec300d5
+
+This verifies an actual Light local-row component. The theorem assumes the
+input coefficient arrays and a separate output buffer. It does not prove
+the shared-cache oracle or the full refined APSP theorem.

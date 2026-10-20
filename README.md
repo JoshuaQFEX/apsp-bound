@@ -1,6 +1,32 @@
-# APSP exponent refinement
+# APSP bounds and Lean proofs
 
 **Joshua Wharton · QFEX · [joshua@qfex.com](mailto:joshua@qfex.com)**
+
+## Complete word-RAM theorem
+
+The [complete Lean project](verified/README.md) proves
+
+$$O\!\left(n^{2.995560766}\right)$$
+
+for the challenge's exact deterministic integer APSP problem. Its closed theorem [Race.bound](verified/Submission.lean) provides a correct finite word-RAM program and a proof of its actual execution time, including the required input, output, memory, and word-width conditions. It has no unproved numerical, oracle, correctness, or execution-cost hypotheses.
+
+This refines the **2.99556085** exponent listed as Lean Verified on [Big O Speedrun](https://bigospeedrun.com/apsp) on 20 October 2026. The decrease is exactly **0.000000084**. It retunes the executable parameters of Li Xuanji's complete proof, following Hrishik Sai Bojnal's earlier numerical refinement. Original algorithm, compiler, and proof attribution is preserved.
+
+Run the complete verification with:
+
+```bash
+cd verified
+lake exe cache get
+python3 verify.py
+```
+
+The verification builds the sources, checks that the challenge statement is unchanged, checks the exact rational theorem type, and audits all transitive axioms of that theorem. The [successful verification transcript](verified/verification.txt) and [checked source hashes](verified/verification.json) record the local result. The [independent candidate CI run](https://github.com/JoshuaQFEX/apsp-bound/actions/runs/39424373480) also passed both proof jobs. See [provenance and changed files](verified/MODIFICATIONS.md) and the [full build instructions](verified/README.md).
+
+**This complete theorem is for 2.995560766.** The faster exponent **2.9929479187094**, described below, remains conditional on unformalized machine implementation obligations. The complete proof above does not establish that faster exponent. Local proof checking does not mean the challenge has reviewed or accepted this new result.
+
+The [`machine/` directory](machine/README.md) contains two newly checked components toward the faster construction: a selected-row controller and all twelve local row encoders. Their execution, memory, and resource proofs are complete at the component level. The [encoder refinement](machine/refinement/README.md) also proves equality to the imported upstream row definition and an execution-time comparison with its scalar counter. The [remaining full-program obligations](machine/MACHINE_OBLIGATIONS.md) are stated explicitly.
+
+## Faster conditional numerical refinement
 
 An exact numerical certificate for the conditional deterministic integer APSP bound
 
@@ -8,17 +34,17 @@ $$O\!\left(n^{2.9929479187094}\right).$$
 
 This refines the exponent **2.99294792** displayed as **Claimed** on the [Big O Speedrun APSP challenge](https://bigospeedrun.com/apsp) when examined on 20 October 2026. The decrease in the exponent is exactly **0.0000000012906**.
 
-Read the [research note (PDF)](apsp_refinement.pdf), its [LaTeX source](apsp_refinement.tex), or the [Lean proof and build instructions](lean/README.md).
+Read the [research note (PDF)](apsp_refinement.pdf), its [LaTeX source](apsp_refinement.tex), the [complete word-RAM proof](verified/README.md), or the [faster bound’s numerical Lean proof](lean/README.md).
 
-## What is established
+## What the conditional certificate establishes
 
 The accompanying Lean development proves **47 strict numerical inequalities and all exact stage identities**, with the entropy expressions defined using Mathlib's actual `Real.log`. It also proves a common reserve of **2 × 10⁻¹⁴** in the inequalities, controls all stages of both phases, and derives the stated exponent for the explicit mathematical cost ledger, including fixed logarithmic factors and upward rounding. The independent Python checker verifies the same numerical conditions using rational interval arithmetic. These conditions come from the aligned Walsh embedding, polynomial query cache, and composite-incidence construction in the [pinned upstream note](https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex).
 
-The APSP bound is **conditional on that construction's written algorithmic proof and word-RAM cost interpretation**. The Lean theorems establish the numerical certificate and the mathematical cost ledger; the complete challenge `EndStatement.APSP` theorem, including a correct machine program and a proof of its execution cost, remains outside this development. The fixed stage count is enormous and the certified slack is very small; no global optimality or practical speedup is claimed.
+The APSP bound is **conditional on that construction's written algorithmic proof and word-RAM cost interpretation**. The theorems in `lean/` establish the numerical certificate and the mathematical cost ledger. A complete challenge `EndStatement.APSP` theorem at **2.9929479187094**, including a correct machine program and a proof of its execution cost, remains unproved. The fixed stage count is enormous and the certified slack is very small; no global optimality or practical speedup is claimed.
 
 The contribution here is a refined rational parameter witness, its Lean formalization, an independently implemented exact checker, a reproducible numerical search, and an explanatory note. The underlying algorithm and adapted proof architecture are attributed to the sources below and in the Lean file headers. The materials were prepared with AI assistance; the separate reviews mentioned in the note were AI-agent reviews. This repository records the refinement and is not a submission to, or verification by, the challenge.
 
-## Check the Lean proof
+## Check the numerical Lean proof
 
 The project pins **Lean 4.33.1** and an exact Mathlib commit. Follow the [setup instructions](lean/README.md), then run:
 

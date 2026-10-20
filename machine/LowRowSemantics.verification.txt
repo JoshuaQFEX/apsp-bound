@@ -1,0 +1,19 @@
+Successful check of LowRowSemantics.lean
+Author: Joshua Wharton, QFEX, joshua@qfex.com.
+Lean version: leanprover/lean4:v4.33.1
+Source SHA-256: e0913d2c4df268e376f11c1585b6aa90e24d6b186a399aa1c2b052f93943ac56
+
+Working directory:
+/workspace/scratch/7d68118d32c5/apsp_work/full_machine/extension
+
+Command:
+PATH=/tmp/lean-4.33.1-linux/bin:$PATH lake env lean -j1 -o .lake/build/lib/lean/LowRowSemantics.olean LowRowSemantics.lean
+
+Exit code: 0
+
+'Light.LowRowMachine.normal_formulas' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Light.LowRowMachine.opposite_formulas' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Light.LowRowMachine.thirdRead_flatten' depends on axioms: [propext, Quot.sound]
+
+Compiled .olean SHA-256:
+0e4780b2120803ca5824185cc019077d8d81c9572d98ec56a5b4830280339103

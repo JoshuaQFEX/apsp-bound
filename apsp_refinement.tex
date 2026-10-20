@@ -4,20 +4,22 @@
 \usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array,microtype}
 \usepackage{xcolor,hyperref,fancyhdr}
 \definecolor{ink}{HTML}{173B52}
-\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=ink,citecolor=ink}
+\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=ink,citecolor=ink,
+  pdftitle={APSP exponent refinements: a complete Lean proof and a conditional bound},
+  pdfauthor={Joshua Wharton, QFEX, joshua@qfex.com}}
 \newcommand{\HH}{\mathcal H}
 \newcommand{\softO}{\widetilde O}
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}[proposition]{Corollary}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small APSP exponent refinement}
+\fancyhead[L]{\small APSP exponent refinements}
 \fancyhead[R]{\small 20 October 2026}
 \fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
-\title{A numerical refinement of the\newline aligned-cache APSP exponent}
+\title{Two APSP exponent refinements:\newline a complete Lean proof and a conditional bound}
 \author{Joshua Wharton\\QFEX\\\texttt{joshua@qfex.com}}
 \date{20 October 2026}
 \begin{document}
@@ -25,17 +27,18 @@
 \thispagestyle{empty}
 \vspace{-12pt}
 \begin{abstract}
-We give exact rational parameters satisfying all 47 numerical conditions
-used by the current leading claimed APSP construction. They yield the
-conditional bound $O(n^{2.9929479187094})$, improving the displayed
-$O(n^{2.99294792})$ bound by $1.2906\times10^{-9}$ in its exponent.
-This is a parameter and numerical-certificate refinement of the existing
-algorithm. Its APSP consequence depends on that construction's written
-algebraic and runtime proof. A Lean development proves the real numerical
-certificate and its explicit asymptotic cost ledger; the complete challenge
-word-RAM theorem remains outside this formalization. A standalone Python
-checker using rational interval arithmetic also accompanies this note.
-The numerical feasibility result is independent of floating-point optimization.
+We give a complete Lean proof of deterministic integer APSP in
+$O(n^{2.995560766})$ time in the challenge's exact fixed-width word-RAM
+model. This retunes the executable parameters of Li Xuanji's verified
+algorithm, following the numerical certificate of Hrishik Sai Bojnal,
+and improves the currently listed Lean-verified exponent $2.99556085$
+by $8.4\times10^{-8}$. The theorem includes the finite program,
+correctness, memory and word-size obligations, and its actual execution
+cost. Separately, we retain a numerical refinement of the leading
+claimed aligned-cache construction to $O(n^{2.9929479187094})$.
+Lean proves that faster construction's real numerical certificate and
+mathematical cost ledger, but its complete machine implementation remains
+unproved. The two exponents therefore have different formal guarantees.
 \end{abstract}
 
 \section{Scope and precise status}
@@ -46,7 +49,12 @@ edge-presence and weight matrices as inputs. For each fixed input-magnitude
 exponent, its word-RAM program must work at every sufficiently large word
 width proportional to $\log n$~\cite{race}.
 
-The baseline is the aligned Walsh embedding, polynomial query cache, and
+This note contains two distinct results. Section~\ref{sec:complete} proves
+the complete challenge statement at exponent $2.995560766$. The subsequent
+sections concern the faster, conditional exponent $2.9929479187094$.
+The latter is not a fully Lean-verified APSP bound.
+
+The source of the conditional result is the aligned Walsh embedding, polynomial query cache, and
 composite-incidence reduction in the note by the GitHub author
 \texttt{shreshth-s}~\cite{base}, building on
 Alman--Vassilevska Williams~\cite{avw} and Majdoddin~\cite{majd}.
@@ -56,15 +64,131 @@ The challenge classifies its exponent $2.99294792$ as \emph{Claimed}:
 the accompanying Lean development uses a different cost model from the
 required \texttt{EndStatement} model~\cite{race}.
 
-This note proves the numerical feasibility of a new rational witness.
-The companion Lean development establishes the real-logarithm certificate
-and its mathematical cost-ledger bound. Its algorithmic corollary uses the
-cited written lemmas as dependencies.
+For that construction, this note proves the numerical feasibility of a new
+rational witness. The \texttt{lean/} development establishes the real-logarithm
+certificate and its mathematical cost-ledger bound. Its algorithmic corollary
+uses the cited written lemmas as dependencies.
 A separate AI-agent review during preparation checked the local
 identity, Walsh normalization, cache counting, box decomposition, phase
 costs, certification rule, and reductions to min-plus and APSP; no defect
 was found in those examined steps. That review and finite checks do not
 constitute a formal proof of the complete word-RAM program.
+
+\section{A complete proof at exponent 2.995560766}\label{sec:complete}
+\begin{proposition}[Complete word-RAM theorem]
+The deterministic APSP problem specified by the challenge is solvable in
+$O(n^{1497780383/500000000})=O(n^{2.995560766})$ time.
+For every fixed input-magnitude exponent, the program works for all
+admissible inputs and all word widths above a constant multiple of
+$\operatorname{Nat.log2}(n)+1$, including the specified empty-input case.
+\end{proposition}
+
+\begin{proof}
+The complete formal proof is \texttt{verified/Submission.lean} in the
+accompanying repository. Its final theorem has the exact type
+\begin{verbatim}
+theorem Race.bound :
+  EndStatement.APSP.SolvedInTime
+    ((1497780383 : Rat) / 500000000)
+\end{verbatim}
+The \texttt{EndStatement.lean} file is byte-for-byte identical to the
+challenge definition. This theorem has no undischarged oracle, numerical,
+correctness, or running-time premise.
+
+The inherited proof is Li Xuanji's complete batched APSP development,
+with Hrishik Sai Bojnal's earlier numerical refinement~\cite{verifiedbase}.
+It supplies an actual counting-oracle program in the finite imperative
+language \texttt{Light}, deterministic prime filtering, reductions to
+min-plus product and APSP, explicit memory layouts and resource bounds,
+and a proved compiler to the challenge's instructions. We use the
+following rational parameters, retuning $\theta$ and $\sigma$ in both
+the code and the proofs:
+\[
+ c=20,\qquad \theta=\frac{5656907}{50000000}=0.11313814,
+ \qquad \sigma=\frac{3361758}{10^8}=0.03361758.
+\]
+The new program uses block size
+$s=2^{\lfloor\sigma k\rfloor}$, where $k$ is the binary size of $n$,
+and query threshold $t=\lceil\theta m\rceil$ at tensor depth $m$.
+Changing the executable constants also requires larger constant
+allowances for parameter computation and intermediate words. Those
+allowances are updated in the actual execution proofs.
+
+For this inherited ten-term construction, write
+$\HH(x)=-x\ln x-(1-x)\ln(1-x)$ and define
+\begin{align*}
+ \Gamma&=\frac{20\HH(1/20)-20\HH((1-\theta)/20)-\theta\ln9}{\ln4},\\
+ q&=\frac{\HH(\theta)+\theta\ln9}{\ln4},
+ & B&=\frac{19\ln3}{\ln4}.
+\end{align*}
+These differ from the aligned-cache quantities in later sections.
+The new \texttt{Batch/Numbers.lean} proves
+\[
+ \Gamma>0.06602549498,\qquad q<0.43397449436,
+ \qquad B<15.057143757.
+\]
+Six logarithm enclosures follow from forty terms of the positive
+atanh series and an explicit geometric remainder. All quantities are
+Mathlib's actual real logarithms. Rational arithmetic and Lean's kernel
+check the enclosures; no numerical approximation is assumed.
+
+Let $\eta=10^{-11}$ be the allowance for the candidate-prime scale.
+After substituting the conservative bounds above, the three dominant
+cost exponents are bounded by the following exact terminating decimals:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Cost component & Exponent upper bound\\
+\midrule
+Box preprocessing & $2.9955607652902802482502$\\
+Queries & $2.9955607645685534425436$\\
+Pruned encodings & $2.99556067980046755757$\\
+\bottomrule
+\end{tabular}
+\end{center}
+They follow respectively from
+$3-2\sigma\Gamma+(1-\Gamma)\eta$,
+$3-\sigma(1-2q)+q\eta$, and
+$2+\sigma(2B-1/2)+(B+1/2)\eta$.
+All are below $2.9955607654$. The formal cost proof absorbs constants
+and logarithmic factors through the sequence
+\[
+ 2.9955607654 < 2.9955607655 < 2.9955607656
+ < 2.9955607657 < 2.995560766.
+\]
+The counting-oracle execution theorem \texttt{oracle\_solves}, its
+polynomial resource theorem, the filtering host, and the inherited
+min-plus/APSP and compiler proofs discharge every premise of the final
+theorem. Thus the exponent bounds actual machine execution, including
+the required reachability and distance output.
+\end{proof}
+
+The decrease from the listed Lean-verified exponent is exactly
+\[
+ 2.99556085-2.995560766=0.000000084.
+\]
+This is an asymptotic refinement of the same algorithm, not a claim of
+practical acceleration or a new underlying APSP algorithm. The faster
+$2.9929479187094$ result below does not follow from this theorem.
+
+\paragraph{Reproduction and attribution.}
+The \texttt{verified/} directory contains the full source development,
+Lean 4.33.1 and Mathlib revision pins, the submission manifest, and
+\texttt{verify.py}. The verifier builds the sources, checks the canonical
+statement's SHA-256 digest, checks the exact rational theorem type, and
+rejects transitive axioms beyond \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}. Run
+\begin{verbatim}
+cd verified
+python3 verify.py
+\end{verbatim}
+after installing the pinned dependencies as documented in that directory.
+The rational-parameter refinement and new certificates are attributed to
+Joshua Wharton, QFEX. The algorithm, compiler, and inherited proofs retain
+the credits to Li Xuanji, Hrishik Sai Bojnal, Anthropic, and the original
+paper's authors. The development was prepared with AI assistance.
+Local formal verification does not constitute a site review or acceptance
+by Big O Speedrun.
 
 \section{Cost expressions inherited from the construction}
 Write $\HH(x)=-x\ln x-(1-x)\ln(1-x)$ and define
@@ -250,7 +374,7 @@ python3 verify_certificate.py --json certificate.json
 \end{verbatim}
 recomputes all 47 inequalities and exact stage identities.
 
-\section{Lean formalization}\label{sec:lean}
+\section{Lean certificate for the conditional faster bound}\label{sec:lean}
 The repository's \texttt{lean/} directory contains a Lean 4.33.1
 development with Mathlib pinned to revision \texttt{0df444a360ea};
 the full dependency identifiers are in \texttt{lake-manifest.json}.
@@ -313,16 +437,27 @@ were independently rerun: the embedding checker passed 352 original
 matrix outputs; the cache checker passed 34 arbitrary signed-array
 queries and 20 encoders; the integration checker passed 530 normalized
 scalar and cyclic coefficients. These tests do not prove the
-asymptotic construction. The Lean numerical and cost-ledger proofs do
-not discharge the full word-RAM implementation and correctness obligations.
+asymptotic construction. The Lean numerical and cost-ledger proofs for
+$2.9929479187094$ do not discharge that construction's full word-RAM
+implementation and correctness obligations.
 This repository records the refinement; it does not
 constitute a submission to, or verification by, the challenge.
 
-\clearpage
-\begin{thebibliography}{9}\small
+\begin{thebibliography}{9}\small\raggedright
 \bibitem{race}
 Big O Speedrun, \emph{APSP challenge}, accessed 20 October 2026.
 \url{https://bigospeedrun.com/apsp}.
+
+\bibitem{verifiedbase}
+Li Xuanji, \emph{Batched deterministic APSP proof}, Big O Speedrun
+submission~6, with the numerical refinement to $2.99556085$ by
+Hrishik Sai Bojnal (\texttt{fringewidth}). The latter development is
+archived in \texttt{bigospeedrun/verifier}, revision
+\texttt{319252b348e2}, directory
+\texttt{submissions/apsp/fringewidth-apsp-299556085}.
+\href{https://github.com/bigospeedrun/verifier/tree/319252b348e254a4257cdc69805fd6eec3f5cd94/submissions/apsp/fringewidth-apsp-299556085}{Pinned complete proof}.
+The underlying Anthropic \texttt{formal-math/3sum-apsp} development
+is pinned there to revision \texttt{e1a4e6508154}.
 
 \bibitem{base}
 GitHub author \texttt{shreshth-s}, \emph{Improving the displayed
