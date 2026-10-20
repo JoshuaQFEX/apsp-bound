@@ -1,52 +1,123 @@
-PASS ordinary tail c > 5: [5.6655002440657290000000000000, 5.6655002440657290000000000000] > 0
-PASS theta > 0: [0.0652978236987263100000000000, 0.0652978236987263100000000000] > 0
-PASS unweighted binomial tail increasing: [0.4347021763012736900000000000, 0.4347021763012736900000000000] > 0
-PASS stored binomial tail increasing: [0.7347021763012736900000000000, 0.7347021763012736900000000000] > 0
-PASS ordinary private tail geometric: [0.5861569604267656246461431595, 0.5861569604267656246461431596] > 0
-PASS box private tail geometric: [0.6157757381081852756562837850, 0.6157757381081852756562837851] > 0
-PASS G > 0: [0.0865763741108969372794207708, 0.0865763741108969372794207709] > 0
-PASS G < 1: [0.9134236258891030627205792291, 0.9134236258891030627205792292] > 0
-PASS q1 > 0: [0.3481258021903767534946072234, 0.3481258021903767534946072235] > 0
-PASS q2 > 0: [0.4787214495878293734946072234, 0.4787214495878293734946072235] > 0
-PASS cache slope positive: [12.9074871542643172647684572984, 12.9074871542643172647684572985] > 0
-PASS ordinary encoder slope positive: [12.4727849779630435739944293042, 12.4727849779630435739944293043] > 0
-PASS geometry slope positive: [11.5593613520739405112738500750, 11.5593613520739405112738500751] > 0
-PASS frozen factors positive: [768979037380.0000000000000000000000000000, 768979037380.0000000000000000000000000000] > 0
-PASS at least two cyclic factors: [231020962620.0000000000000000000000000000, 231020962620.0000000000000000000000000000] > 1
-PASS cyclic exponent positive: [0.0106376725881413427820727151, 0.0106376725881413427820727151] > 0
-PASS candidate exponent positive: [0.0000000000000460463521037221, 0.0000000000000460463521037222] > 0
-PASS middle blocks fit: [0.9539536478962778950000000000, 0.9539536478962778950000000000] > 0
-PASS incidence bookkeeping: [0.0460463521036760586478962778, 0.0460463521036760586478962779] > 35260406453/5000000000000
-PASS phase I initial: boxes: [0.0500328783098499898236361428, 0.0500328783098499898236361429] > 35260406453/5000000000000
-PASS phase I initial: residual queries: [0.0300164288396272586358668759, 0.0300164288396272586358668760] > 35260406453/5000000000000
-PASS phase I initial: stored queries: [0.0240029756763506159401230785, 0.0240029756763506159401230786] > 35260406453/5000000000000
-PASS phase I initial: polynomial cache: [0.4747268298760123194339359815, 0.4747268298760123194339359816] > 35260406453/5000000000000
-PASS phase I initial: ordinary box encodings: [0.4947432793462350506217052484, 0.4947432793462350506217052485] > 35260406453/5000000000000
-PASS phase I initial: matrix formation: [0.9999999999999539536478962778, 0.9999999999999539536478962779] > 35260406453/5000000000000
-PASS phase I initial: tile geometry: [0.4447104010363850607980691055, 0.4447104010363850607980691056] > 0
-PASS phase I freeze: boxes: [0.0176897538787830006140796708, 0.0176897538787830006140796709] > 35260406453/5000000000000
-PASS phase I freeze: residual queries: [0.0176897538787637448412723740, 0.0176897538787637448412723741] > 35260406453/5000000000000
-PASS phase I freeze: stored queries: [0.0070520812906609134787173031, 0.0070520812906609134787173032] > 35260406453/5000000000000
-PASS phase I freeze: polynomial cache: [0.0176897538791915629378897925, 0.0176897538791915629378897926] > 35260406453/5000000000000
-PASS phase I freeze: ordinary box encodings: [0.0530984333947915809286243742, 0.0530984333947915809286243743] > 35260406453/5000000000000
-PASS phase I freeze: matrix formation: [0.9468869807265828103210053505, 0.9468869807265828103210053506] > 35260406453/5000000000000
-PASS phase I freeze: tile geometry: [0.0354086795160085803145447033, 0.0354086795160085803145447034] > 0
-PASS phase II start: boxes: [0.0176897538787830006140796708, 0.0176897538787830006140796709] > 35260406453/5000000000000
-PASS phase II start: residual queries: [0.0176897538787637448412723740, 0.0176897538787637448412723741] > 35260406453/5000000000000
-PASS phase II start: stored queries: [0.0070520812906609134787173031, 0.0070520812906609134787173032] > 35260406453/5000000000000
-PASS phase II start: polynomial cache: [0.0176897538791915629378897925, 0.0176897538791915629378897926] > 35260406453/5000000000000
-PASS phase II start: ordinary box encodings: [0.0530984333947915809286243742, 0.0530984333947915809286243743] > 35260406453/5000000000000
-PASS phase II start: matrix formation: [0.9468869807265828103210053505, 0.9468869807265828103210053506] > 35260406453/5000000000000
-PASS phase II start: tile geometry: [0.0354086795160085803145447033, 0.0354086795160085803145447034] > 0
-PASS phase II final: boxes: [0.0070520812906416578320069557, 0.0070520812906416578320069558] > 35260406453/5000000000000
-PASS phase II final: residual queries: [0.0070520812906224020591996589, 0.0070520812906224020591996590] > 35260406453/5000000000000
-PASS phase II final: stored queries: [0.0070520812906609134787173031, 0.0070520812906609134787173032] > 35260406453/5000000000000
-PASS phase II final: polynomial cache: [0.0070520812910502201558170774, 0.0070520812910502201558170775] > 35260406453/5000000000000
-PASS phase II final: ordinary box encodings: [0.0424607608066502381465516591, 0.0424607608066502381465516592] > 35260406453/5000000000000
-PASS phase II final: matrix formation: [0.9362493081384414675389326354, 0.9362493081384414675389326355] > 35260406453/5000000000000
-PASS phase II final: tile geometry: [0.0354086795160085803145447033, 0.0354086795160085803145447034] > 0
+Started: 2026-10-20T13:30:21.017231+00:00
+Command: python3 -B verify.py
 
-PASS: 47 strict rational inequalities and all exact stage identities.
-Certified exponent: 2.9929479187094
-Smallest certified runtime gap: 0.0000000000000224020591996589
-This certifies numerical feasibility, not the full word-RAM theorem.
+⚠ [2894/3023] Replayed Submission.ThreeSumApsp.Batch.Lift
+warning: Submission/ThreeSumApsp/Batch/Lift.lean:79:27: Variable name `hp` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hp
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Submission/ThreeSumApsp/Batch/Lift.lean:80:18: Variable name `hb` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hb
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Submission/ThreeSumApsp/Batch/Lift.lean:183:34: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Submission/ThreeSumApsp/Batch/Lift.lean:183:47: Variable name `hb` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hb
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2922/3080] Replayed Submission.ThreeSumApsp.AllEdges.Task
+warning: Submission/ThreeSumApsp/AllEdges/Task.lean:84:55: Variable name `hq` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hq
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2931/3080] Replayed Submission.ThreeSumApsp.Filter2.Mass
+warning: Submission/ThreeSumApsp/Filter2/Mass.lean:193:14: Variable name `hqs` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hqs
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2932/3080] Replayed Submission.ThreeSumApsp.Filter2.HostMath
+warning: Submission/ThreeSumApsp/Filter2/HostMath.lean:241:18: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2933/3080] Replayed Submission.ThreeSumApsp.Filter2.HostProcs
+warning: Submission/ThreeSumApsp/Filter2/HostProcs.lean:392:38: Unused tactic linter: `push_cast at hw` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [2942/3080] Replayed Submission.ThreeSumApsp.AllEdges.PairsSpec
+warning: Submission/ThreeSumApsp/AllEdges/PairsSpec.lean:104:10: This simp argument is unused:
+  triOf
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Theorem21.negToExact]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [2947/3080] Replayed Submission.ThreeSumApsp.AllEdges.ScanPairs
+warning: Submission/ThreeSumApsp/AllEdges/ScanPairs.lean:141:59: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3030/3105] Replayed Submission.ThreeSumApsp.Batch.OProg
+warning: Submission/ThreeSumApsp/Batch/OProg.lean:354:71: Variable name `hn'` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn'
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3032/3105] Replayed Submission.ThreeSumApsp.Batch.OQuery
+warning: Submission/ThreeSumApsp/Batch/OQuery.lean:92:19: Variable name `S` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _S
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3038/3105] Replayed Submission.ThreeSumApsp.Batch.ORunBatch
+warning: Submission/ThreeSumApsp/Batch/ORunBatch.lean:123:5: Variable name `hkb1` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hkb1
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Submission/ThreeSumApsp/Batch/ORunBatch.lean:378:15: This simp argument is unused:
+  Cond.cost
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Expr.cost, List.map_cons, List.map_nil, List.sum_cons, List.sum_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Submission/ThreeSumApsp/Batch/ORunBatch.lean:291:8: Unused tactic linter: `change top pv (oT x.s x.p) (oB0 x.n x.s x.p fr) ≤ lim.space` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [3042/3105] Replayed Submission.ThreeSumApsp.Batch.ONeedPoly
+warning: Submission/ThreeSumApsp/Batch/ONeedPoly.lean:292:32: exponent 800 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+⚠ [3043/3105] Replayed Submission.ThreeSumApsp.Filter2.HostFinal
+warning: Submission/ThreeSumApsp/Filter2/HostFinal.lean:198:48: This simp argument is unused:
+  Nat.cast_ofNat
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [update_frame_setLocal, setLocal]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3052/3105] Replayed Submission.ThreeSumApsp.AllEdges.Loop
+warning: Submission/ThreeSumApsp/AllEdges/Loop.lean:119:0: Definition `AEHostCtx.toHost` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+⚠ [3069/3105] Replayed Submission.ThreeSumApsp.AllEdges.Claim
+warning: Submission/ThreeSumApsp/AllEdges/Claim.lean:76:34: Variable name `θ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _θ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (3262 jobs).
+Exact APSP theorem passed. Transitive axioms: [propext, Classical.choice, Quot.sound]
+'exactChallengeCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: EndStatement.APSP.SolvedInTime (1497780383/500000000)
+Canonical statement SHA-256: 4291e3f05781cea42f9d672ff73ceac1f6d1a0c3021038e94372fa8f7e1ad987
+Source files checked: 408
+Lean (version 4.33.1, x86_64-unknown-linux-gnu, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6, Release)
+
+Verifier exit code: 0
