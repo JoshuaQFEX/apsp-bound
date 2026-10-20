@@ -1,0 +1,12 @@
+{
+  "c": "10.665500244065729",
+  "theta": "0.06529782369872631",
+  "b": "0.046046352103722105",
+  "R": 1000000000000,
+  "S": 768979037380,
+  "delta": "0.0070520812906",
+  "exponent": "2.9929479187094",
+  "source_commit": "8a21eaae81599913dba562727e03a9b48c36a5b9",
+  "source_url": "https://github.com/shreshth-s/thin-matrix-results/blob/8a21eaae81599913dba562727e03a9b48c36a5b9/outputs/exponent-improvement.tex",
+  "status": "Exact numerical certificate; APSP corollary depends on the cited written algorithmic proof. Not Lean verified."
+}
