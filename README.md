@@ -16,7 +16,7 @@ The accompanying Lean development proves **47 strict numerical inequalities and 
 
 The APSP bound is **conditional on that construction's written algorithmic proof and word-RAM cost interpretation**. The Lean theorems establish the numerical certificate and the mathematical cost ledger; the complete challenge `EndStatement.APSP` theorem, including a correct machine program and a proof of its execution cost, remains outside this development. The fixed stage count is enormous and the certified slack is very small; no global optimality or practical speedup is claimed.
 
-The contribution here is a refined rational parameter witness, its Lean formalization, an independently implemented exact checker, a reproducible numerical search, and an explanatory note, attributed to **Joshua Wharton, QFEX**. The underlying algorithm and adapted proof architecture are attributed to the sources below and in the Lean file headers. The materials were prepared with AI assistance; the separate reviews mentioned in the note were AI-agent reviews. This repository records the refinement and is not a submission to, or verification by, the challenge.
+The contribution here is a refined rational parameter witness, its Lean formalization, an independently implemented exact checker, a reproducible numerical search, and an explanatory note. The underlying algorithm and adapted proof architecture are attributed to the sources below and in the Lean file headers. The materials were prepared with AI assistance; the separate reviews mentioned in the note were AI-agent reviews. This repository records the refinement and is not a submission to, or verification by, the challenge.
 
 ## Check the Lean proof
 
