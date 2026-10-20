@@ -13,13 +13,13 @@ open Lean Elab Command in
 run_cmd do
   let environment ← getEnv
   let allowed : Array Name := #[`propext, `Classical.choice, `Quot.sound]
-  let mut checked := 0
+  let mut checked : Nat := 0
   for (name, _) in environment.constants do
     if (`ApspBound).isPrefixOf name then
       let axioms ← Lean.collectAxioms name
-      for axiom in axioms do
-        unless allowed.contains axiom do
-          throwError "Unexpected axiom {axiom} used by {name}"
+      for axiomName in axioms do
+        unless allowed.contains axiomName do
+          throwError "Unexpected axiom {axiomName} used by {name}"
       checked := checked + 1
   if checked == 0 then
     throwError "No ApspBound declarations were loaded; audit would be empty"
